@@ -675,7 +675,6 @@
         </svg>
         <span id="drop-label">Drop a CSV file here, or click to browse</span>
       </div>
-      <button class="btn btn-ghost" onclick="loadSample()">Sample data</button>
     </div>
 
     <div class="header-div"></div>
@@ -748,7 +747,7 @@
         <line x1="32" y1="12" x2="32" y2="36" stroke="var(--accent)" stroke-width="2" opacity=".3"/>
       </svg>
       <h2>Tech Radar</h2>
-      <p>Drop a CSV onto the bar above, or click <strong>Sample data</strong> to see a preview instantly.</p>
+      <p>Drop a CSV onto the bar above to get started. Quadrant names are read automatically from the <code>Quadrant</code> column.</p>
       <div class="hint">
         <strong>Required column headers</strong>
         <dl class="hint-grid">
@@ -1359,52 +1358,6 @@ function loadFile(file) {
     },
     error(err) { showError('Could not parse CSV: ' + (err?.message || err)); },
   });
-}
-
-// ─────────────────────────────────────────────────────────────────
-// Sample data
-// ─────────────────────────────────────────────────────────────────
-const SAMPLE_CSV = `Name,Quadrant,Ring,IsNew,Description
-Cursor,Coding Agents,Adopt,FALSE,Primary agentic IDE at Neo4j. Fork of VSCode with agentic access to all major models. Team plan with $200 premium credits/month (renewed on the 15th). Also runs inside JetBrains via a plugin.
-Claude Code,Coding Agents,Adopt,FALSE,Anthropics coding agent run from terminal or inside Cursor/JetBrains/OpenCode. Paid via API key (pay-as-you-go) or Standard seat ($40/month). Enterprise-supported and centrally managed by IT.
-JetBrains Junie,Coding Agents,Trial,FALSE,Integrated coding agent for IntelliJ via AI Pro Org license. Reported to be slow and token-hungry. Cursor or the Claude Code API key are recommended as alternatives.
-JetBrains Air,Coding Agents,Assess,TRUE,New agentic IDE tool from JetBrains currently being evaluated. No formal license tier confirmed yet.
-Copilot,Coding Agents,Hold,FALSE,GitHub Copilot IDE extension. Many engineers have moved to Cursor. Some still have free access via open-source contribution eligibility.
-OpenAI Codex,Coding Agents,Assess,FALSE,Included with the ChatGPT Enterprise license. Limited internal documentation; use case not yet fully defined at Neo4j.
-Google Antigravity,Coding Agents,Assess,TRUE,New AI-native IDE from Google. Some usage covered under Google Workspace license. Described as unstable but progressing fast.
-Claude AI,Coding Agents,Adopt,FALSE,Anthropic standard seat ($40/seat). Provides access to Claude.ai chat interface and Cowork mode. Centrally licensed — the baseline Anthropic plan for all Neo4j engineers.
-Claude AI Premium,Coding Agents,Adopt,FALSE,Anthropic premium seat ($200/seat). Bundles chat, Cowork, IDE integration, Claude Code CLI, and code-agent capabilities. Required for engineers doing heavy agentic development. Request access via your manager.
-Workspace Enterprise Plus,Coding Agents,Assess,FALSE,Google Workspace Enterprise Plus plan. Includes Gemini AI features across Gmail, Docs, Sheets, and Meet. Included in the existing Google Workspace license. Not a primary coding tool but provides ambient AI assistance.
-ChatGPT Enterprise,Coding Agents,Trial,FALSE,OpenAI enterprise plan ($30/seat). Includes chat, code-IDE integration, code-cli, and code-agent capabilities. Formally licensed at Neo4j. Most engineers prefer Cursor and Claude Code; this is available for teams that need OpenAI-specific model access.
-GitHub Copilot,GitHub Agents,Adopt,FALSE,GitHub code review agent enabled for all engineers. Invoked via magic words in pull requests for automated code review.
-Cursor BugBot,GitHub Agents,Trial,TRUE,Free GitHub PR review agent from Cursor. Limited to 3 invocations per month per user.
-Claude Opus 4.6,AI Models,Adopt,FALSE,Heavyweight frontier model (~$5 input / $25 output per million tokens). Reserve for complex architectural reasoning or very difficult bugs only — one request can cost as much as 100 lightweight requests.
-Claude Sonnet 4.6,AI Models,Adopt,FALSE,Mid-tier model (~$3 input / $15 output per million tokens). Recommended for the majority of daily coding tasks including refactoring and general chat.
-Claude Haiku,AI Models,Adopt,FALSE,Lightweight model (~$0.50 input / $2 output per million tokens). Ideal for code completion, simple refactoring, and high-frequency tasks.
-GPT 5.3,AI Models,Trial,FALSE,OpenAI mid-tier model with similar cost profile to Claude Sonnet. Widely supported across third-party integrations.
-Gemini Pro,AI Models,Trial,FALSE,Google mid-tier model at a comparable cost tier to Claude Sonnet. Available via Google Workspace licensing.
-Gemini Flash,AI Models,Trial,FALSE,Google lightweight model at a similar cost tier to Claude Haiku. Fast and cheap for high-volume tasks.
-GPT Codex mini,AI Models,Trial,FALSE,OpenAI lightweight model included with ChatGPT Enterprise license. Suitable for simple code completion tasks.
-Claude Platform,AI Models,Adopt,FALSE,Anthropic API platform (usage-based). The underlying API used by Claude Code and internal integrations to call Claude models. Consumed pay-as-you-go; tracked centrally under the Neo4j enterprise agreement.
-AI Studio,AI Models,Trial,FALSE,Google AI Studio — a web-based prototyping environment and API gateway for Gemini models. Included with Google Workspace Enterprise Plus. Useful for experimenting with Gemini before committing to the API.
-Platform API (OpenAI),AI Models,Trial,FALSE,OpenAI API platform (usage-based). Provides programmatic access to GPT and Codex models. Available under the ChatGPT Enterprise agreement. Use when an integration specifically requires OpenAI models.
-Rule Files,Practices & Security,Adopt,FALSE,Persistent context files applied automatically by coding agents (.cursor/rules/ for Cursor; CLAUDE.md for Claude Code; .github/copilot-instructions.md for Copilot). Most tools can generate a starter set from your project.
-Secure Rules (Wiz),Practices & Security,Adopt,FALSE,Security rule files from the Wiz secure-rules-files repository. Must be placed in repo root so the AI agent always applies language- and tool-specific security constraints.
-AI Code Review Policy,Practices & Security,Adopt,FALSE,All AI-generated code must be reviewed by two humans before merging. The managing engineer plus one peer. No Co-Authored-By attribution required in commits.
-hone-ai,Practices & Security,Assess,TRUE,AI Coding Agent Orchestrator with continuous learning. Orchestration layer on top of Claude Code and OpenCode. Recommended plugin for enforcing best practices at scale.
-oskars.ai Autoresearch,Practices & Security,Assess,TRUE,Plugin for optimising any part of your workflow. Available at oskars.ai/plugins/autoresearch.
-`;
-
-function loadSample() {
-  clearError();
-  const { blips, quadrants } = processRows(Papa.parse(SAMPLE_CSV, { header: true, skipEmptyLines: true }).data);
-  _blips = blips; _quadrants = quadrants;
-  quadrants.forEach(q => { if (_quadrantDisplayNames[q] === undefined) _quadrantDisplayNames[q] = ''; });
-  renderRadar(blips, quadrants); renderLegend(blips, quadrants);
-  renderQuadrantInputs(quadrants);
-  document.getElementById('drop-zone').classList.remove('has-file');
-  document.getElementById('drop-label').textContent = 'Drop a CSV file here, or click to browse';
-  document.getElementById('csv-file-input').value = '';
 }
 
 // ─────────────────────────────────────────────────────────────────
