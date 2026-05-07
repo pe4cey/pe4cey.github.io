@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tech Radar · Neo4j</title>
+  <title>AI Dev Tools Radar · Neo4j</title>
 
   <!-- Needle typefaces: Public Sans (body) + Syne (display) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1146,22 +1146,25 @@ function renderRadar(blips, quadrants) {
     if (graph) lbl.attr('letter-spacing', '1.5px').attr('opacity', 0.7);
   });
 
-  // Quadrant labels — placed at R+28px along each quadrant's bisector angle
-  // so they always sit within the SVG bounds (SVG edge is at R+60px from centre)
+  // Quadrant labels — centred in each quadrant half, just outside the ring circle.
+  // Placing them at (±R*0.5, ±(R+22)) keeps text-anchor:middle horizontally safe
+  // for any label length, since ±R*0.5 ± (longest_text/2) always fits within ±(R+60).
+  //   Q0 = top-right  →  (+x, –y above ring)
+  //   Q1 = bot-right  →  (+x, +y below ring)
+  //   Q2 = bot-left   →  (–x, +y below ring)
+  //   Q3 = top-left   →  (–x, –y above ring)
   quadrants.forEach((csvName, qi) => {
-    const qa      = Q_ANGLES[qi];
-    const midAngle = (qa.start + qa.end) / 2;
-    const lr      = R + 28;  // label radius
-    const lx      = Math.cos(midAngle) * lr;
-    const ly      = Math.sin(midAngle) * lr;
-    const anchor  = lx > 2 ? 'start' : lx < -2 ? 'end' : 'middle';
-    const label   = qDisplayName(csvName);
+    const isRight  = qi === 0 || qi === 1;
+    const isBottom = qi === 1 || qi === 2;
+    const lx    = (isRight  ? 1 : -1) * R * 0.5;
+    const ly    = (isBottom ? 1 : -1) * (R + 22);
+    const label = qDisplayName(csvName);
 
     g.append('text')
-      .attr('class','q-lbl')
+      .attr('class', 'q-lbl')
       .attr('x', lx)
       .attr('y', ly + 4)
-      .attr('text-anchor', anchor)
+      .attr('text-anchor', 'middle')
       .attr('fill', tc.qColors[qi])
       .attr('opacity', graph ? 0.85 : 1)
       .text(label);
@@ -1329,8 +1332,11 @@ function onDrop(ev) { ev.preventDefault(); onDragLeave(); const f = ev.dataTrans
 function onFilePicked(ev) { const f = ev.target.files?.[0]; if (f) loadFile(f); }
 
 function loadFile(file) {
-  if (!file.name.toLowerCase().endsWith('.csv') && file.type !== 'text/csv') {
-    showError('Please choose a .csv file.'); return;
+  // Accept anything — let PapaParse decide if it's valid CSV rather than
+  // guessing by MIME type (which varies across OS/browser combinations)
+  const name = (file.name || '').toLowerCase();
+  if (name && !name.endsWith('.csv') && !name.endsWith('.txt')) {
+    showError(`Unexpected file type "${file.name}". Please drop a .csv file.`); return;
   }
   clearError();
   document.getElementById('drop-zone').classList.add('has-file');
@@ -1359,35 +1365,34 @@ function loadFile(file) {
 // Sample data
 // ─────────────────────────────────────────────────────────────────
 const SAMPLE_CSV = `Name,Quadrant,Ring,IsNew,Description
-Claude 3.5 Sonnet,AI,Adopt,FALSE,Best-in-class reasoning and code generation; primary LLM for internal tooling
-GPT-4o,AI,Adopt,FALSE,Strong multimodal capabilities; widely supported in third-party integrations
-Gemini 2.0 Flash,AI,Adopt,TRUE,Google's fast and cheap frontier model; excellent for high-volume inference
-LangChain,AI,Trial,FALSE,Mature framework for LLM apps; useful for RAG and agent pipelines
-LlamaIndex,AI,Trial,FALSE,Focused on data ingestion and retrieval; good enterprise integration story
-Cursor,AI,Trial,TRUE,AI-native IDE with strong code completion and refactoring support
-Ollama,AI,Trial,TRUE,Run open-weight LLMs locally with minimal setup; useful for offline/private use
-Claude Tool Use API,AI,Assess,TRUE,Native function-calling for agentic workflows in the Anthropic API
-Mistral 8x22B,AI,Assess,TRUE,Open-weight mixture-of-experts model; competitive performance at lower cost
-LLM Guard,AI,Assess,FALSE,Prompt injection detection and PII scrubbing layer for LLM pipelines
-AutoGen,AI,Hold,FALSE,Microsoft agent framework; high complexity relative to simpler alternatives
-GraphRAG,Data,Adopt,TRUE,Graph-enhanced retrieval for multi-hop questions; strong fit with Neo4j
-Neo4j Vector Index,Data,Adopt,FALSE,Native ANN search in Neo4j; enables combined graph+vector queries
-DuckDB,Data,Adopt,FALSE,Embeddable analytical database; excellent for lightweight local analytics
-Weaviate,Data,Trial,TRUE,Open-source vector DB with rich filter support; evaluating for search use cases
-Databricks Unity Catalog,Data,Assess,FALSE,Data governance and cataloguing; assessing fit for data mesh strategy
-Pinecone,Data,Assess,FALSE,Managed vector DB; good SLAs but adds an external dependency
-Apache Iceberg,Data,Assess,TRUE,Open table format for data lakes; growing ecosystem and tooling
-Terraform,Platform,Adopt,FALSE,De facto IaC standard; mature tooling and provider ecosystem
-Kubernetes,Platform,Adopt,FALSE,Container orchestration default for production microservices
-GitHub Actions,Platform,Adopt,FALSE,First-class CI/CD with native GitHub integration
-Modal,Platform,Trial,TRUE,Serverless GPU compute; very low friction for ML model serving
-Ray,Platform,Trial,FALSE,Distributed Python for ML workloads; evaluating for AI pipeline scaling
-Pulumi,Platform,Assess,FALSE,IaC with real programming languages; potential Terraform replacement
-Dagger,Platform,Hold,FALSE,Portable pipeline-as-code; still too early for production adoption
-TypeScript,Languages,Adopt,FALSE,Default for all frontend and Node.js tooling; strong type safety
-Python 3.12,Languages,Adopt,FALSE,Primary language for data engineering and ML workloads
-Rust,Languages,Trial,FALSE,Memory-safe systems language; adopted for performance-critical CLI tools
-Go,Languages,Assess,FALSE,Evaluating for high-throughput microservices where Python is too slow
+Cursor,Coding Agents,Adopt,FALSE,Primary agentic IDE at Neo4j. Fork of VSCode with agentic access to all major models. Team plan with $200 premium credits/month (renewed on the 15th). Also runs inside JetBrains via a plugin.
+Claude Code,Coding Agents,Adopt,FALSE,Anthropics coding agent run from terminal or inside Cursor/JetBrains/OpenCode. Paid via API key (pay-as-you-go) or Standard seat ($40/month). Enterprise-supported and centrally managed by IT.
+JetBrains Junie,Coding Agents,Trial,FALSE,Integrated coding agent for IntelliJ via AI Pro Org license. Reported to be slow and token-hungry. Cursor or the Claude Code API key are recommended as alternatives.
+JetBrains Air,Coding Agents,Assess,TRUE,New agentic IDE tool from JetBrains currently being evaluated. No formal license tier confirmed yet.
+Copilot,Coding Agents,Hold,FALSE,GitHub Copilot IDE extension. Many engineers have moved to Cursor. Some still have free access via open-source contribution eligibility.
+OpenAI Codex,Coding Agents,Assess,FALSE,Included with the ChatGPT Enterprise license. Limited internal documentation; use case not yet fully defined at Neo4j.
+Google Antigravity,Coding Agents,Assess,TRUE,New AI-native IDE from Google. Some usage covered under Google Workspace license. Described as unstable but progressing fast.
+Claude AI,Coding Agents,Adopt,FALSE,Anthropic standard seat ($40/seat). Provides access to Claude.ai chat interface and Cowork mode. Centrally licensed — the baseline Anthropic plan for all Neo4j engineers.
+Claude AI Premium,Coding Agents,Adopt,FALSE,Anthropic premium seat ($200/seat). Bundles chat, Cowork, IDE integration, Claude Code CLI, and code-agent capabilities. Required for engineers doing heavy agentic development. Request access via your manager.
+Workspace Enterprise Plus,Coding Agents,Assess,FALSE,Google Workspace Enterprise Plus plan. Includes Gemini AI features across Gmail, Docs, Sheets, and Meet. Included in the existing Google Workspace license. Not a primary coding tool but provides ambient AI assistance.
+ChatGPT Enterprise,Coding Agents,Trial,FALSE,OpenAI enterprise plan ($30/seat). Includes chat, code-IDE integration, code-cli, and code-agent capabilities. Formally licensed at Neo4j. Most engineers prefer Cursor and Claude Code; this is available for teams that need OpenAI-specific model access.
+GitHub Copilot,GitHub Agents,Adopt,FALSE,GitHub code review agent enabled for all engineers. Invoked via magic words in pull requests for automated code review.
+Cursor BugBot,GitHub Agents,Trial,TRUE,Free GitHub PR review agent from Cursor. Limited to 3 invocations per month per user.
+Claude Opus 4.6,AI Models,Adopt,FALSE,Heavyweight frontier model (~$5 input / $25 output per million tokens). Reserve for complex architectural reasoning or very difficult bugs only — one request can cost as much as 100 lightweight requests.
+Claude Sonnet 4.6,AI Models,Adopt,FALSE,Mid-tier model (~$3 input / $15 output per million tokens). Recommended for the majority of daily coding tasks including refactoring and general chat.
+Claude Haiku,AI Models,Adopt,FALSE,Lightweight model (~$0.50 input / $2 output per million tokens). Ideal for code completion, simple refactoring, and high-frequency tasks.
+GPT 5.3,AI Models,Trial,FALSE,OpenAI mid-tier model with similar cost profile to Claude Sonnet. Widely supported across third-party integrations.
+Gemini Pro,AI Models,Trial,FALSE,Google mid-tier model at a comparable cost tier to Claude Sonnet. Available via Google Workspace licensing.
+Gemini Flash,AI Models,Trial,FALSE,Google lightweight model at a similar cost tier to Claude Haiku. Fast and cheap for high-volume tasks.
+GPT Codex mini,AI Models,Trial,FALSE,OpenAI lightweight model included with ChatGPT Enterprise license. Suitable for simple code completion tasks.
+Claude Platform,AI Models,Adopt,FALSE,Anthropic API platform (usage-based). The underlying API used by Claude Code and internal integrations to call Claude models. Consumed pay-as-you-go; tracked centrally under the Neo4j enterprise agreement.
+AI Studio,AI Models,Trial,FALSE,Google AI Studio — a web-based prototyping environment and API gateway for Gemini models. Included with Google Workspace Enterprise Plus. Useful for experimenting with Gemini before committing to the API.
+Platform API (OpenAI),AI Models,Trial,FALSE,OpenAI API platform (usage-based). Provides programmatic access to GPT and Codex models. Available under the ChatGPT Enterprise agreement. Use when an integration specifically requires OpenAI models.
+Rule Files,Practices & Security,Adopt,FALSE,Persistent context files applied automatically by coding agents (.cursor/rules/ for Cursor; CLAUDE.md for Claude Code; .github/copilot-instructions.md for Copilot). Most tools can generate a starter set from your project.
+Secure Rules (Wiz),Practices & Security,Adopt,FALSE,Security rule files from the Wiz secure-rules-files repository. Must be placed in repo root so the AI agent always applies language- and tool-specific security constraints.
+AI Code Review Policy,Practices & Security,Adopt,FALSE,All AI-generated code must be reviewed by two humans before merging. The managing engineer plus one peer. No Co-Authored-By attribution required in commits.
+hone-ai,Practices & Security,Assess,TRUE,AI Coding Agent Orchestrator with continuous learning. Orchestration layer on top of Claude Code and OpenCode. Recommended plugin for enforcing best practices at scale.
+oskars.ai Autoresearch,Practices & Security,Assess,TRUE,Plugin for optimising any part of your workflow. Available at oskars.ai/plugins/autoresearch.
 `;
 
 function loadSample() {
