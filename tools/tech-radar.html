@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tech Radar · Neo4j</title>
+  <title>AI Dev Tools Radar · Neo4j</title>
 
   <!-- Needle typefaces: Public Sans (body) + Syne (display) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,6 @@
     /* ── Neo4j (Needle Dark) ─────────────────────────────────── */
     :root,
     [data-theme="neo4j"] {
-      /* Neutral */
       --bg:           #1a1b1d;   /* neutral-bg-default  */
       --surface:      #212325;   /* neutral-bg-weak     */
       --raised:       #3c3f44;   /* neutral-bg-strong   */
@@ -32,16 +31,13 @@
       --text-hi:      #ffffff;
       --muted:        #a8acb2;   /* neutral-text-weaker  */
       --disabled:     #818790;   /* neutral-text-weakest */
-      /* Baltic primary */
       --accent:       #8fe3e8;   /* primary-text / baltic-20  */
       --accent-bg:    #262f31;   /* primary-bg-weak           */
       --accent-hi:    #4c99a4;   /* primary-pressed / baltic-40 */
-      /* Semantic ring colours */
       --adopt:        #90cb62;   /* forest-20  / success  */
       --trial:        #8fe3e8;   /* baltic-20  / primary  */
       --assess:       #ffd600;   /* lemon-30   / warning  */
       --hold:         #ffaa97;   /* hibiscus-20/ danger   */
-      /* Shadow + misc */
       --shadow:       rgba(9,9,10,0.55);
       --ring-key-bg:  rgba(26,27,29,0.90);
       --ring-lbl:     #3c3f44;
@@ -52,25 +48,22 @@
 
     /* ── Needle Light ────────────────────────────────────────── */
     [data-theme="light"] {
-      --bg:           #f5f6f6;   /* neutral-bg-default  */
-      --surface:      #ffffff;   /* neutral-bg-weak     */
-      --raised:       #e2e3e5;   /* neutral-bg-strong   */
-      --border:       #e2e3e5;   /* neutral-border-weak */
-      --border-hi:    #bbbec3;   /* neutral-border-strong */
-      --text:         #1a1b1d;   /* neutral-text-default */
+      --bg:           #f5f6f6;
+      --surface:      #ffffff;
+      --raised:       #e2e3e5;
+      --border:       #e2e3e5;
+      --border-hi:    #bbbec3;
+      --text:         #1a1b1d;
       --text-hi:      #000000;
-      --muted:        #5e636a;   /* neutral-text-weaker  */
-      --disabled:     #a8acb2;   /* neutral-text-weakest */
-      /* Baltic primary (deep blue on light bg) */
-      --accent:       #0a6190;   /* primary-text / baltic-50  */
-      --accent-bg:    #e7fafb;   /* primary-bg-weak / baltic-10 */
-      --accent-hi:    #014063;   /* primary-bg-strong / dark ocean */
-      /* Semantic ring colours */
-      --adopt:        #3f7824;   /* forest-45 / success */
-      --trial:        #0a6190;   /* baltic-50 / primary */
-      --assess:       #b48409;   /* lemon-45  / warning */
-      --hold:         #d43300;   /* hibiscus-40 / danger */
-      /* Shadow + misc */
+      --muted:        #5e636a;
+      --disabled:     #a8acb2;
+      --accent:       #0a6190;
+      --accent-bg:    #e7fafb;
+      --accent-hi:    #014063;
+      --adopt:        #3f7824;
+      --trial:        #0a6190;
+      --assess:       #b48409;
+      --hold:         #d43300;
       --shadow:       rgba(26,27,29,0.16);
       --ring-key-bg:  rgba(245,246,246,0.94);
       --ring-lbl:     #d0d2d5;
@@ -79,7 +72,7 @@
       --tt-desc:      #4d5157;
     }
 
-    /* ── Classic Dark (custom, not Needle) ───────────────────── */
+    /* ── Classic Dark ───────────────────────────────────────── */
     [data-theme="dark"] {
       --bg:           #0d0d1a;
       --surface:      #161626;
@@ -103,6 +96,32 @@
       --tt-new-bg:    rgba(129,140,248,0.18);
       --tt-new-fg:    #a5b4fc;
       --tt-desc:      #b0b0d0;
+    }
+
+    /* ── Graph (Neo4j Browser canvas style) ─────────────────── */
+    [data-theme="graph"] {
+      --bg:           #f2f4f6;   /* canvas background */
+      --surface:      #ffffff;
+      --raised:       #eceef0;
+      --border:       #dde0e4;
+      --border-hi:    #bbbec3;
+      --text:         #1a1b1d;
+      --text-hi:      #000000;
+      --muted:        #5e636a;
+      --disabled:     #a8acb2;
+      --accent:       #e8803a;   /* Neo4j browser orange */
+      --accent-bg:    #fdf2ea;
+      --accent-hi:    #c45e1e;
+      --adopt:        #e8803a;   /* orange */
+      --trial:        #4ca8d4;   /* teal-blue */
+      --assess:       #e8803a;
+      --hold:         #4ca8d4;
+      --shadow:       rgba(26,27,29,0.18);
+      --ring-key-bg:  rgba(242,244,246,0.94);
+      --ring-lbl:     #c8ccd0;
+      --tt-new-bg:    rgba(232,128,58,0.10);
+      --tt-new-fg:    #e8803a;
+      --tt-desc:      #4d5157;
     }
 
     /* ════════════════════════════════════════════════════════════
@@ -151,14 +170,7 @@
       flex-shrink: 0;
       text-decoration: none;
     }
-
-    /* Node-graph icon (3 connected circles, brand mark style) */
-    .logo-icon {
-      width: 28px;
-      height: 28px;
-      flex-shrink: 0;
-    }
-
+    .logo-icon { width: 28px; height: 28px; flex-shrink: 0; }
     .logo-text {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -169,10 +181,8 @@
     }
     .logo-text span { color: var(--accent); }
 
-    /* Divider */
     .header-div {
-      width: 1px;
-      height: 20px;
+      width: 1px; height: 20px;
       background: var(--border);
       flex-shrink: 0;
     }
@@ -185,7 +195,6 @@
       flex: 1;
       min-width: 0;
     }
-
     #csv-file-input { display: none; }
 
     .drop-zone {
@@ -234,16 +243,20 @@
       transition: background .15s, color .15s, opacity .15s;
       flex-shrink: 0;
     }
-    .btn:hover   { opacity: .88; }
+    .btn:hover { opacity: .88; }
     .btn-ghost {
       background: transparent;
       color: var(--text);
       border: 1.5px solid var(--border-hi);
     }
-    .btn-ghost:hover {
-      background: var(--raised);
+    .btn-ghost:hover { background: var(--raised); opacity: 1; }
+    .btn-ghost.active {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border-color: var(--accent);
       opacity: 1;
     }
+    .btn-ghost.active:hover { background: var(--accent-bg); opacity: .9; }
 
     /* ── Theme switcher ──────────────────────────────────────── */
     .theme-switcher {
@@ -256,7 +269,6 @@
       padding: 3px;
       flex-shrink: 0;
     }
-
     .theme-btn {
       height: 26px;
       padding: 0 10px;
@@ -276,19 +288,71 @@
       align-items: center;
       gap: 5px;
     }
-    .theme-btn:hover { background: var(--raised); color: var(--text); }
-    .theme-btn.active {
-      background: var(--raised);
-      color: var(--accent);
-    }
+    .theme-btn:hover  { background: var(--raised); color: var(--text); }
+    .theme-btn.active { background: var(--raised); color: var(--accent); }
 
-    /* Neo4j node-graph dot in theme btn */
     .n4j-node {
       width: 6px; height: 6px;
       border-radius: 50%;
       background: currentColor;
       flex-shrink: 0;
     }
+
+    /* ── Quadrant-name row ───────────────────────────────────── */
+    .q-name-row {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0 8px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .q-name-row-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      color: var(--disabled);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .q-name-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .q-name-chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0 10px 0 7px;
+      height: 26px;
+      transition: border-color .15s;
+    }
+    .q-name-chip:focus-within {
+      border-color: var(--accent);
+      background: var(--accent-bg);
+    }
+    .q-name-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .q-name-input {
+      border: none;
+      background: transparent;
+      font-family: 'Public Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      outline: none;
+      width: 100px;
+      min-width: 60px;
+    }
+    .q-name-input::placeholder { color: var(--disabled); }
 
     /* ── Error bar ───────────────────────────────────────────── */
     .error-bar {
@@ -301,7 +365,8 @@
       color: #ff8e6a;
       display: none;
     }
-    [data-theme="light"] .error-bar { color: #bb2d00; }
+    [data-theme="light"] .error-bar,
+    [data-theme="graph"] .error-bar { color: #bb2d00; }
 
     /* ════════════════════════════════════════════════════════════
        MAIN LAYOUT
@@ -311,7 +376,6 @@
       flex: 1;
       overflow: hidden;
     }
-
     #radar-wrap {
       flex: 1;
       display: flex;
@@ -330,14 +394,11 @@
       max-width: 500px;
       padding: 40px 20px;
     }
-
     .placeholder-icon {
-      width: 64px;
-      height: 64px;
+      width: 64px; height: 64px;
       margin: 0 auto 20px;
       opacity: .4;
     }
-
     #placeholder h2 {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -346,8 +407,7 @@
       margin-bottom: 10px;
       letter-spacing: -.2px;
     }
-    #placeholder p  { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
+    #placeholder p { font-size: 14px; color: var(--muted); line-height: 1.6; }
     #placeholder .hint {
       margin-top: 20px;
       padding: 14px 16px;
@@ -368,7 +428,6 @@
       padding: 1px 5px;
       border-radius: 4px;
     }
-
     .hint-grid {
       display: grid;
       grid-template-columns: auto 1fr;
@@ -396,7 +455,6 @@
     #legend::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
     .q-section { margin-bottom: 22px; }
-
     .q-header {
       font-family: 'Syne', sans-serif;
       font-size: 11px;
@@ -407,7 +465,6 @@
       margin-bottom: 8px;
       border-bottom: 1.5px solid var(--border);
     }
-
     .ring-group { margin-bottom: 10px; }
     .ring-label-sm {
       font-size: 10px;
@@ -418,7 +475,6 @@
       margin-bottom: 4px;
       padding-left: 2px;
     }
-
     .blip-row {
       display: flex;
       align-items: center;
@@ -431,8 +487,7 @@
     .blip-row:hover { background: var(--raised); }
 
     .blip-num {
-      width: 18px;
-      height: 18px;
+      width: 18px; height: 18px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -445,6 +500,26 @@
     }
     .blip-num.diamond { border-radius: 0; transform: rotate(45deg); }
     .blip-num.diamond .inner { transform: rotate(-45deg); display: block; }
+
+    /* Graph theme legend: pill-shaped node labels */
+    [data-theme="graph"] .blip-num {
+      border-radius: 20px;
+      width: auto;
+      padding: 0 7px;
+      font-size: 9px;
+      font-weight: 700;
+      height: 18px;
+    }
+    [data-theme="graph"] .blip-num.diamond {
+      border-radius: 20px;
+      transform: none;
+      border: 2px solid currentColor;
+      background: transparent !important;
+    }
+    [data-theme="graph"] .blip-num.diamond .inner {
+      transform: none;
+      color: var(--text);
+    }
 
     .blip-name { font-size: 12px; line-height: 1.4; flex: 1; min-width: 0; }
     .new-badge {
@@ -460,7 +535,7 @@
     }
 
     /* ════════════════════════════════════════════════════════════
-       RING KEY STRIP (bottom of radar)
+       RING KEY STRIP
        ════════════════════════════════════════════════════════════ */
     #ring-key {
       display: none;
@@ -485,6 +560,13 @@
     .key-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .key-div  { width: 1px; height: 14px; background: var(--border); }
 
+    /* Graph theme ring key — show node shape instead of ring dot */
+    [data-theme="graph"] .key-item .graph-node-pill {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
     /* ════════════════════════════════════════════════════════════
        SVG / D3 CLASSES
        ════════════════════════════════════════════════════════════ */
@@ -508,7 +590,7 @@
     }
     .blip-g { cursor: pointer; }
     .blip-shape { transition: opacity .15s; opacity: .9; }
-    .blip-g:hover .blip-shape { opacity: 1; filter: brightness(1.2); }
+    .blip-g:hover .blip-shape { opacity: 1; filter: brightness(1.12); }
     .blip-text {
       font-size: 7.5px;
       font-weight: 700;
@@ -517,6 +599,18 @@
       dominant-baseline: central;
       text-anchor: middle;
       pointer-events: none;
+    }
+
+    /* Graph-mode node labels: larger, inside node */
+    .blip-node-label {
+      font-size: 8.5px;
+      font-weight: 700;
+      font-family: 'Public Sans', sans-serif;
+      fill: #fff;
+      dominant-baseline: central;
+      text-anchor: middle;
+      pointer-events: none;
+      letter-spacing: -0.2px;
     }
 
     /* ════════════════════════════════════════════════════════════
@@ -555,7 +649,6 @@
 
     <!-- Logo -->
     <a class="logo" href="#" onclick="return false">
-      <!-- Needle-style node graph icon: 3 nodes + 2 edges -->
       <svg class="logo-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="6"  cy="22" r="4.5" fill="var(--accent)" opacity=".9"/>
         <circle cx="22" cy="22" r="4.5" fill="var(--accent)" opacity=".6"/>
@@ -577,7 +670,6 @@
         ondragover="onDragOver(event)"
         ondragleave="onDragLeave(event)"
         ondrop="onDrop(event)">
-        <!-- upload icon -->
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;opacity:.6">
           <path d="M8 1v9M4 5l4-4 4 4M2 12v2a1 1 0 001 1h10a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -585,6 +677,20 @@
       </div>
       <button class="btn btn-ghost" onclick="loadSample()">Sample data</button>
     </div>
+
+    <div class="header-div"></div>
+
+    <!-- Scale toggle -->
+    <button class="btn btn-ghost" id="scale-btn" onclick="toggleAutoScale()" title="Scale each ring's width proportionally to its item count">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none" style="flex-shrink:0">
+        <!-- stacked bars of different widths = proportional rings -->
+        <rect x="0" y="0"  width="14" height="2.5" rx="1" fill="currentColor" opacity=".5"/>
+        <rect x="0" y="4"  width="10" height="2.5" rx="1" fill="currentColor" opacity=".7"/>
+        <rect x="0" y="8"  width="6"  height="2.5" rx="1" fill="currentColor" opacity=".85"/>
+        <rect x="0" y="12" width="3"  height="2"   rx="1" fill="currentColor"/>
+      </svg>
+      Scale
+    </button>
 
     <!-- Theme switcher -->
     <div class="theme-switcher" role="group" aria-label="Choose theme">
@@ -604,16 +710,32 @@
         </svg>
         Dark
       </button>
+      <button class="theme-btn" data-t="graph" onclick="setTheme('graph')" title="Graph node theme (Neo4j Browser style)">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <circle cx="6" cy="2"  r="1.8" fill="currentColor"/>
+          <circle cx="2" cy="10" r="1.8" fill="currentColor"/>
+          <circle cx="10" cy="10" r="1.8" fill="currentColor"/>
+          <line x1="6" y1="2" x2="2"  y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="6" y1="2" x2="10" y2="10" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        Graph
+      </button>
     </div>
 
   </div>
+
+  <!-- Quadrant label editor — visible after data is loaded -->
+  <div class="q-name-row" id="q-name-row">
+    <span class="q-name-row-label">Quadrant labels</span>
+    <div class="q-name-chips" id="q-name-chips"></div>
+  </div>
+
   <div class="error-bar" id="error-bar"></div>
 </header>
 
 <main>
   <div id="radar-wrap">
     <div id="placeholder">
-      <!-- Needle-style large node graph placeholder icon -->
       <svg class="placeholder-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="52" r="9" fill="var(--accent)"/>
         <circle cx="52" cy="52" r="9" fill="var(--accent)"/>
@@ -633,7 +755,7 @@
           <dt>Name</dt><dd>Technology or tool name</dd>
           <dt>Quadrant</dt><dd>Up to 4 categories (e.g. AI, Data, Platform)</dd>
           <dt>Ring</dt><dd><code>Adopt</code> · <code>Trial</code> · <code>Assess</code> · <code>Hold</code></dd>
-          <dt>IsNew</dt><dd><code>TRUE</code> = diamond blip &nbsp;·&nbsp; <code>FALSE</code> = circle</dd>
+          <dt>IsNew</dt><dd><code>TRUE</code> = new entry &nbsp;·&nbsp; <code>FALSE</code> = existing</dd>
           <dt>Description</dt><dd>Shown in the hover tooltip</dd>
         </dl>
       </div>
@@ -647,11 +769,11 @@
       <div class="key-item"><div class="key-dot" style="background:var(--assess)"></div>Assess</div>
       <div class="key-item"><div class="key-dot" style="background:var(--hold)"></div>Hold</div>
       <div class="key-div"></div>
-      <div class="key-item">
+      <div class="key-item" id="key-existing">
         <svg width="11" height="11" style="flex-shrink:0"><circle cx="5.5" cy="5.5" r="4.5" fill="var(--muted)"/></svg>
         Existing
       </div>
-      <div class="key-item">
+      <div class="key-item" id="key-new">
         <svg width="11" height="11" style="flex-shrink:0"><polygon points="5.5,1 10,5.5 5.5,10 1,5.5" fill="var(--muted)"/></svg>
         New
       </div>
@@ -666,31 +788,33 @@
 <script>
 // ─────────────────────────────────────────────────────────────────
 // SVG colour palettes per theme
-// All values sourced from @neo4j-ndl/base tokens.css
 // ─────────────────────────────────────────────────────────────────
 const THEME_SVG = {
-  // Neo4j Needle Dark — uses brand semantic colours
   neo4j: {
     qColors:    ['#8fe3e8', '#90cb62', '#ccb4ff', '#ffc450'],
-    //            baltic-20  forest-20  lavender-20  marigold-25
     ringFills:  ['#212325', '#1e2022', '#1b1c1e', '#181919'],
     ringStroke: '#3c3f44',
     centreDot:  '#5e636a',
   },
-  // Needle Light — darker tones for contrast on pale rings
   light: {
     qColors:    ['#0a6190', '#3f7824', '#5a34aa', '#d43300'],
-    //            baltic-50  forest-45  lavender-45  hibiscus-45
     ringFills:  ['#f0f1f1', '#eaebec', '#e4e5e7', '#dedfe1'],
     ringStroke: '#e2e3e5',
     centreDot:  '#bbbec3',
   },
-  // Classic custom dark
   dark: {
     qColors:    ['#818cf8', '#34d399', '#f472b6', '#fb923c'],
     ringFills:  ['#12122a', '#0f1024', '#0d0e1e', '#0b0c1a'],
     ringStroke: '#222244',
     centreDot:  '#2a2a4e',
+  },
+  // Graph: Neo4j Browser canvas aesthetic
+  // Orange and teal-blue alternate as "node type" colours per quadrant
+  graph: {
+    qColors:    ['#e8803a', '#4ca8d4', '#e8803a', '#4ca8d4'],
+    ringFills:  ['#f2f4f6', '#edf0f2', '#e8ecef', '#e3e7ea'],
+    ringStroke: '#c8cdd3',
+    centreDot:  '#bbbec3',
   },
 };
 
@@ -706,20 +830,106 @@ const Q_ANGLES = [
   { start:  Math.PI/2 + 0.13,  end:  Math.PI - 0.13    },
   { start: -Math.PI + 0.13,    end: -Math.PI/2 - 0.13  },
 ];
-const Q_LABEL_POS = [
-  { fx:  0.55, fy: -1.18 },
-  { fx:  0.55, fy:  1.25 },
-  { fx: -0.55, fy:  1.25 },
-  { fx: -0.55, fy: -1.18 },
-];
+// Q_LABEL_POS is computed dynamically in renderRadar() using the
+// mid-angle of each quadrant at (R + 28)px to stay reliably inside the SVG.
+
+// Dynamic blip radius — larger in graph mode to show node labels
+let BLIP_R = 9;
+
+// Ring fraction scaling — equal by default, proportional when _autoScale is on
+const RING_FRACS_EQUAL = [0, 0.25, 0.50, 0.75, 1.0];
+let _effectiveRingFracs = RING_FRACS_EQUAL;
+let _autoScale = false;
+
+/**
+ * Compute ring fracs proportional to item count.
+ * Each ring is guaranteed at least MIN_FRAC of the total radius,
+ * the remaining (1 - MIN_FRAC * numRings) is shared by count.
+ */
+function computeRingFracs(blips) {
+  const MIN_FRAC = 0.10; // each ring is at least 10% of the radar radius
+  const counts   = RINGS.map((_, ri) => blips.filter(b => b.rIdx === ri).length);
+  const total    = counts.reduce((a, b) => a + b, 0);
+  if (total === 0) return RING_FRACS_EQUAL;
+
+  const reserved     = MIN_FRAC * RINGS.length; // 0.40 guaranteed
+  const distributable = 1 - reserved;
+
+  const fracs = [0];
+  for (let i = 0; i < RINGS.length; i++) {
+    const share = MIN_FRAC + (counts[i] / total) * distributable;
+    fracs.push(fracs[i] + share);
+  }
+  return fracs;
+}
+
+function toggleAutoScale() {
+  _autoScale = !_autoScale;
+  document.getElementById('scale-btn').classList.toggle('active', _autoScale);
+  if (_blips.length) { renderRadar(_blips, _quadrants); }
+}
 
 // ─────────────────────────────────────────────────────────────────
 // State
 // ─────────────────────────────────────────────────────────────────
 let _blips = [], _quadrants = [];
 
+// Maps CSV quadrant name → display name (editable by the user)
+let _quadrantDisplayNames = {};
+
+/** Return the display name for a CSV quadrant name */
+function qDisplayName(csvName) {
+  const v = _quadrantDisplayNames[csvName];
+  return (v !== undefined && v !== '') ? v : csvName;
+}
+
+/** Build / refresh the quadrant label editor row */
+function renderQuadrantInputs(quadrants) {
+  const tc      = themeColors();
+  const row     = document.getElementById('q-name-row');
+  const chips   = document.getElementById('q-name-chips');
+  chips.innerHTML = '';
+
+  quadrants.forEach((csvName, qi) => {
+    const color = tc.qColors[qi];
+
+    const chip  = document.createElement('div');
+    chip.className = 'q-name-chip';
+
+    const dot = document.createElement('div');
+    dot.className = 'q-name-dot';
+    dot.style.background = color;
+
+    const inp = document.createElement('input');
+    inp.type        = 'text';
+    inp.className   = 'q-name-input';
+    inp.value       = _quadrantDisplayNames[csvName] !== undefined
+                        ? _quadrantDisplayNames[csvName]
+                        : csvName;
+    inp.placeholder = csvName;
+    inp.title       = `CSV value: "${csvName}"`;
+
+    // Autosize to content
+    inp.style.width = Math.max(inp.value.length, csvName.length, 6) * 8 + 'px';
+
+    inp.addEventListener('input', () => {
+      _quadrantDisplayNames[csvName] = inp.value;
+      inp.style.width = Math.max(inp.value.length, 6) * 8 + 'px';
+      if (_blips.length) { renderRadar(_blips, _quadrants); renderLegend(_blips, _quadrants); }
+    });
+
+    chip.appendChild(dot);
+    chip.appendChild(inp);
+    chips.appendChild(chip);
+  });
+
+  row.style.display = 'flex';
+}
+
 function currentTheme() { return document.documentElement.dataset.theme || 'neo4j'; }
 function themeColors()  { return THEME_SVG[currentTheme()] || THEME_SVG.neo4j; }
+function isGraphTheme() { return currentTheme() === 'graph'; }
+function blipRadius()   { return isGraphTheme() ? 22 : 9; }
 
 // ─────────────────────────────────────────────────────────────────
 // Theme switching
@@ -728,7 +938,12 @@ function setTheme(name) {
   document.documentElement.dataset.theme = name;
   localStorage.setItem('ndl-radar-theme', name);
   document.querySelectorAll('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.t === name));
-  if (_blips.length) { renderRadar(_blips, _quadrants); renderLegend(_blips, _quadrants); }
+  updateRingKeyStyle();
+  if (_blips.length) {
+    renderRadar(_blips, _quadrants);
+    renderLegend(_blips, _quadrants);
+    renderQuadrantInputs(_quadrants);
+  }
 }
 
 (function restoreTheme() {
@@ -739,7 +954,41 @@ function setTheme(name) {
   } else {
     document.querySelector('.theme-btn[data-t="neo4j"]').classList.add('active');
   }
+  updateRingKeyStyle();
 })();
+
+// Graph theme uses different key legend shapes
+function updateRingKeyStyle() {
+  const isGraph = isGraphTheme();
+  const existingEl = document.getElementById('key-existing');
+  const newEl      = document.getElementById('key-new');
+  if (!existingEl) return;
+
+  if (isGraph) {
+    existingEl.innerHTML = `
+      <svg width="14" height="14" style="flex-shrink:0">
+        <circle cx="7" cy="7" r="6" fill="var(--muted)"/>
+      </svg>
+      Existing`;
+    newEl.innerHTML = `
+      <svg width="14" height="14" style="flex-shrink:0">
+        <circle cx="7" cy="7" r="6" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <circle cx="7" cy="7" r="2.5" fill="var(--muted)"/>
+      </svg>
+      New`;
+  } else {
+    existingEl.innerHTML = `
+      <svg width="11" height="11" style="flex-shrink:0">
+        <circle cx="5.5" cy="5.5" r="4.5" fill="var(--muted)"/>
+      </svg>
+      Existing`;
+    newEl.innerHTML = `
+      <svg width="11" height="11" style="flex-shrink:0">
+        <polygon points="5.5,1 10,5.5 5.5,10 1,5.5" fill="var(--muted)"/>
+      </svg>
+      New`;
+  }
+}
 
 // ─────────────────────────────────────────────────────────────────
 // Utilities
@@ -752,6 +1001,11 @@ function djb2(s) {
 function seededRng(seed) {
   let s = (seed >>> 0) || 1;
   return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+}
+
+// Truncate label to fit inside a graph node circle
+function truncate(name, maxLen) {
+  return name.length > maxLen ? name.slice(0, maxLen - 1) + '…' : name;
 }
 
 // ─────────────────────────────────────────────────────────────────
@@ -789,28 +1043,29 @@ function processRows(rows) {
 }
 
 // ─────────────────────────────────────────────────────────────────
-// Blip placement (collision-aware)
+// Blip placement (collision-aware, respects current BLIP_R)
 // ─────────────────────────────────────────────────────────────────
-const BLIP_R = 9;
-
 function candidatePos(blip, R, attempt) {
+  const pad  = BLIP_R + (isGraphTheme() ? 8 : 5);
   const ring = {
-    inner: RING_FRACS[blip.rIdx]     * R + BLIP_R + 5,
-    outer: RING_FRACS[blip.rIdx + 1] * R - BLIP_R - 5,
+    inner: _effectiveRingFracs[blip.rIdx]     * R + pad,
+    outer: _effectiveRingFracs[blip.rIdx + 1] * R - pad,
   };
   if (ring.inner > ring.outer) ring.inner = ring.outer - 1;
-  const qa  = Q_ANGLES[blip.qIdx];
-  const rng = seededRng(djb2(blip.name + blip.quadrant + blip.ring + attempt));
-  return { x: Math.cos(qa.start + rng() * (qa.end - qa.start)) * (ring.inner + rng() * (ring.outer - ring.inner)),
-           y: Math.sin(qa.start + rng() * (qa.end - qa.start)) * (ring.inner + rng() * (ring.outer - ring.inner)) };
+  const qa    = Q_ANGLES[blip.qIdx];
+  const rng   = seededRng(djb2(blip.name + blip.quadrant + blip.ring + attempt));
+  const angle = qa.start + rng() * (qa.end - qa.start);   // one angle …
+  const r     = ring.inner + rng() * (ring.outer - ring.inner); // … one radius
+  return { x: Math.cos(angle) * r, y: Math.sin(angle) * r };   // used consistently
 }
 
 function placeBlips(blips, R) {
   const placed = [];
-  const sorted = [...blips].sort((a, b) => a.qIdx - b.qIdx || a.rIdx - b.rIdx);
+  const minDist = BLIP_R * 2 + (isGraphTheme() ? 10 : 4);
+  const sorted  = [...blips].sort((a, b) => a.qIdx - b.qIdx || a.rIdx - b.rIdx);
   sorted.forEach(blip => {
     let best = null, bestScore = -Infinity;
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 80; i++) {
       const p = candidatePos(blip, R, i);
       let minD = Infinity;
       placed.forEach(q => { const d = Math.hypot(p.x - q.x, p.y - q.y); if (d < minD) minD = d; });
@@ -827,50 +1082,92 @@ function placeBlips(blips, R) {
 // Render radar
 // ─────────────────────────────────────────────────────────────────
 function renderRadar(blips, quadrants) {
-  const tc   = themeColors();
-  const wrap = document.getElementById('radar-wrap');
-  const size = Math.min(wrap.clientWidth - 20, wrap.clientHeight - 20, 800);
-  const R    = Math.floor(size / 2 - 60);
-  const C    = size / 2;
+  BLIP_R = blipRadius();
+  _effectiveRingFracs = _autoScale ? computeRingFracs(blips) : RING_FRACS_EQUAL;
+  const tc     = themeColors();
+  const graph  = isGraphTheme();
+  const wrap   = document.getElementById('radar-wrap');
+  const size   = Math.min(wrap.clientWidth - 20, wrap.clientHeight - 20, 800);
+  const R      = Math.floor(size / 2 - 60);
+  const C      = size / 2;
 
   placeBlips(blips, R);
 
   const svg = d3.select('#radar').attr('width', size).attr('height', size).style('display', 'block');
   svg.selectAll('*').remove();
+
+  // Graph theme: subtle canvas pattern background
+  if (graph) {
+    const defs = svg.append('defs');
+    const pat  = defs.append('pattern')
+      .attr('id', 'grid-pat')
+      .attr('width', 28).attr('height', 28)
+      .attr('patternUnits', 'userSpaceOnUse');
+    pat.append('circle').attr('cx', 14).attr('cy', 14).attr('r', 1)
+      .attr('fill', '#c8cdd3').attr('opacity', 0.5);
+  }
+
   const g = svg.append('g').attr('transform', `translate(${C},${C})`);
+
+  // Canvas dot pattern for graph mode
+  if (graph) {
+    g.append('circle')
+      .attr('r', R + 40)
+      .attr('fill', 'url(#grid-pat)')
+      .attr('opacity', 0.8);
+  }
 
   // Ring fills (outer → inner)
   for (let i = 3; i >= 0; i--) {
-    g.append('circle')
-      .attr('r', RING_FRACS[i + 1] * R)
+    const circle = g.append('circle')
+      .attr('r', _effectiveRingFracs[i + 1] * R)
       .attr('fill', tc.ringFills[i])
       .attr('stroke', tc.ringStroke)
-      .attr('stroke-width', 1);
+      .attr('stroke-width', graph ? 1 : 1);
+    if (graph) circle.attr('stroke-dasharray', '5,3').attr('opacity', 0.75);
   }
 
   // Centre dot
-  g.append('circle').attr('r', 2.5).attr('fill', tc.centreDot);
+  g.append('circle').attr('r', graph ? 3 : 2.5).attr('fill', tc.centreDot);
 
   // Axes
   const axLen = R + 26;
-  g.append('line').attr('class','grid-line').attr('x1',0).attr('y1',-axLen).attr('x2',0).attr('y2',axLen);
-  g.append('line').attr('class','grid-line').attr('x1',-axLen).attr('y1',0).attr('x2',axLen).attr('y2',0);
+  [[-1,0,0,0,0,-1,0,0], [0,-1,0,0,0,0,0,-1]].forEach(() => {});
+  const ax1 = g.append('line').attr('class','grid-line').attr('x1',0).attr('y1',-axLen).attr('x2',0).attr('y2',axLen);
+  const ax2 = g.append('line').attr('class','grid-line').attr('x1',-axLen).attr('y1',0).attr('x2',axLen).attr('y2',0);
+  if (graph) { ax1.attr('stroke-dasharray','6,4'); ax2.attr('stroke-dasharray','6,4'); }
 
-  // Ring arc labels (inside ring, just below the top axis)
+  // Ring arc labels — include item count when auto-scaling so user can see why widths differ
   RINGS.forEach((name, i) => {
-    const midR = (RING_FRACS[i] + RING_FRACS[i + 1]) / 2 * R;
-    g.append('text').attr('class','ring-arc-lbl').attr('x', 5).attr('y', -midR + 4).text(name);
+    const midR   = (_effectiveRingFracs[i] + _effectiveRingFracs[i + 1]) / 2 * R;
+    const count  = blips.filter(b => b.rIdx === i).length;
+    const label  = _autoScale ? `${name}  (${count})` : name;
+    const lbl    = g.append('text').attr('class','ring-arc-lbl').attr('x', 5).attr('y', -midR + 4).text(label);
+    if (graph) lbl.attr('letter-spacing', '1.5px').attr('opacity', 0.7);
   });
 
-  // Quadrant labels
-  quadrants.forEach((name, qi) => {
-    const lp = Q_LABEL_POS[qi];
+  // Quadrant labels — centred in each quadrant half, just outside the ring circle.
+  // Placing them at (±R*0.5, ±(R+22)) keeps text-anchor:middle horizontally safe
+  // for any label length, since ±R*0.5 ± (longest_text/2) always fits within ±(R+60).
+  //   Q0 = top-right  →  (+x, –y above ring)
+  //   Q1 = bot-right  →  (+x, +y below ring)
+  //   Q2 = bot-left   →  (–x, +y below ring)
+  //   Q3 = top-left   →  (–x, –y above ring)
+  quadrants.forEach((csvName, qi) => {
+    const isRight  = qi === 0 || qi === 1;
+    const isBottom = qi === 1 || qi === 2;
+    const lx    = (isRight  ? 1 : -1) * R * 0.5;
+    const ly    = (isBottom ? 1 : -1) * (R + 22);
+    const label = qDisplayName(csvName);
+
     g.append('text')
-      .attr('class','q-lbl')
-      .attr('x', lp.fx * R).attr('y', lp.fy * R)
-      .attr('text-anchor','middle')
+      .attr('class', 'q-lbl')
+      .attr('x', lx)
+      .attr('y', ly + 4)
+      .attr('text-anchor', 'middle')
       .attr('fill', tc.qColors[qi])
-      .text(name);
+      .attr('opacity', graph ? 0.85 : 1)
+      .text(label);
   });
 
   // Blips
@@ -883,14 +1180,51 @@ function renderRadar(blips, quadrants) {
       .on('mousemove', moveTip)
       .on('mouseout', hideTip);
 
-    if (blip.isNew) {
-      bg.append('polygon').attr('class','blip-shape')
-        .attr('points', `0,${-BLIP_R} ${BLIP_R},0 0,${BLIP_R} ${-BLIP_R},0`)
-        .attr('fill', color);
+    if (graph) {
+      // ── Graph node style ──────────────────────────────────────
+      // Drop shadow
+      bg.append('circle')
+        .attr('r', BLIP_R + 1)
+        .attr('fill', 'rgba(0,0,0,0.15)')
+        .attr('transform', 'translate(1,2)');
+
+      if (blip.isNew) {
+        // New: outer halo ring + filled inner node
+        bg.append('circle')
+          .attr('r', BLIP_R + 5)
+          .attr('fill', 'none')
+          .attr('stroke', color)
+          .attr('stroke-width', 2)
+          .attr('opacity', 0.45)
+          .attr('class', 'blip-shape');
+      }
+
+      // Main filled circle (graph node)
+      bg.append('circle')
+        .attr('class', 'blip-shape')
+        .attr('r', BLIP_R)
+        .attr('fill', color)
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 1.5)
+        .attr('stroke-opacity', 0.3);
+
+      // Node label (truncated name, fits inside circle)
+      const label = truncate(blip.name, 11);
+      bg.append('text')
+        .attr('class', 'blip-node-label')
+        .text(label);
+
     } else {
-      bg.append('circle').attr('class','blip-shape').attr('r', BLIP_R).attr('fill', color);
+      // ── Standard blip ─────────────────────────────────────────
+      if (blip.isNew) {
+        bg.append('polygon').attr('class','blip-shape')
+          .attr('points', `0,${-BLIP_R} ${BLIP_R},0 0,${BLIP_R} ${-BLIP_R},0`)
+          .attr('fill', color);
+      } else {
+        bg.append('circle').attr('class','blip-shape').attr('r', BLIP_R).attr('fill', color);
+      }
+      bg.append('text').attr('class','blip-text').text(blip.num);
     }
-    bg.append('text').attr('class','blip-text').text(blip.num);
   });
 
   document.getElementById('placeholder').style.display = 'none';
@@ -902,8 +1236,9 @@ function renderRadar(blips, quadrants) {
 // Render legend
 // ─────────────────────────────────────────────────────────────────
 function renderLegend(blips, quadrants) {
-  const tc = themeColors();
-  const el = document.getElementById('legend');
+  const tc    = themeColors();
+  const graph = isGraphTheme();
+  const el    = document.getElementById('legend');
   el.style.display = 'block';
   el.innerHTML = '';
 
@@ -912,7 +1247,7 @@ function renderLegend(blips, quadrants) {
     const sec = document.createElement('div'); sec.className = 'q-section';
 
     const hdr = document.createElement('div');
-    hdr.className = 'q-header'; hdr.style.color = color; hdr.textContent = qName;
+    hdr.className = 'q-header'; hdr.style.color = color; hdr.textContent = qDisplayName(qName);
     sec.appendChild(hdr);
 
     RINGS.forEach((ring, ri) => {
@@ -929,13 +1264,23 @@ function renderLegend(blips, quadrants) {
         if (blip.description) row.title = blip.description;
 
         const badge = document.createElement('div');
-        badge.className = 'blip-num' + (blip.isNew ? ' diamond' : '');
-        badge.style.background = color;
-        if (blip.isNew) {
-          const inner = document.createElement('span'); inner.className = 'inner'; inner.textContent = blip.num;
-          badge.appendChild(inner);
-        } else {
+
+        if (graph) {
+          // Graph mode: pill badge with color background
+          badge.className = 'blip-num';
+          badge.style.background = blip.isNew ? 'transparent' : color;
+          badge.style.color      = blip.isNew ? color : '#fff';
+          badge.style.border     = blip.isNew ? `2px solid ${color}` : 'none';
           badge.textContent = blip.num;
+        } else {
+          badge.className = 'blip-num' + (blip.isNew ? ' diamond' : '');
+          badge.style.background = color;
+          if (blip.isNew) {
+            const inner = document.createElement('span'); inner.className = 'inner'; inner.textContent = blip.num;
+            badge.appendChild(inner);
+          } else {
+            badge.textContent = blip.num;
+          }
         }
 
         const name = document.createElement('div'); name.className = 'blip-name'; name.textContent = blip.name;
@@ -959,7 +1304,7 @@ function renderLegend(blips, quadrants) {
 function showTip(ev, blip, color) {
   const t = document.getElementById('tooltip');
   t.innerHTML = `
-    <div class="tt-name" style="color:${color}">${blip.num}. ${blip.name}</div>
+    <div class="tt-name" style="color:${color}">${isGraphTheme() ? '' : blip.num + '. '}${blip.name}</div>
     <div class="tt-meta">
       <span>${blip.quadrant}</span>
       <span style="opacity:.4">·</span>
@@ -987,8 +1332,11 @@ function onDrop(ev) { ev.preventDefault(); onDragLeave(); const f = ev.dataTrans
 function onFilePicked(ev) { const f = ev.target.files?.[0]; if (f) loadFile(f); }
 
 function loadFile(file) {
-  if (!file.name.toLowerCase().endsWith('.csv') && file.type !== 'text/csv') {
-    showError('Please choose a .csv file.'); return;
+  // Accept anything — let PapaParse decide if it's valid CSV rather than
+  // guessing by MIME type (which varies across OS/browser combinations)
+  const name = (file.name || '').toLowerCase();
+  if (name && !name.endsWith('.csv') && !name.endsWith('.txt')) {
+    showError(`Unexpected file type "${file.name}". Please drop a .csv file.`); return;
   }
   clearError();
   document.getElementById('drop-zone').classList.add('has-file');
@@ -1004,7 +1352,10 @@ function loadFile(file) {
         return;
       }
       _blips = blips; _quadrants = quadrants;
+      // Reset display names for any new quadrants not seen before
+      quadrants.forEach(q => { if (_quadrantDisplayNames[q] === undefined) _quadrantDisplayNames[q] = ''; });
       renderRadar(blips, quadrants); renderLegend(blips, quadrants);
+      renderQuadrantInputs(quadrants);
     },
     error(err) { showError('Could not parse CSV: ' + (err?.message || err)); },
   });
@@ -1014,42 +1365,43 @@ function loadFile(file) {
 // Sample data
 // ─────────────────────────────────────────────────────────────────
 const SAMPLE_CSV = `Name,Quadrant,Ring,IsNew,Description
-Claude 3.5 Sonnet,AI,Adopt,FALSE,Best-in-class reasoning and code generation; primary LLM for internal tooling
-GPT-4o,AI,Adopt,FALSE,Strong multimodal capabilities; widely supported in third-party integrations
-Gemini 2.0 Flash,AI,Adopt,TRUE,Google's fast and cheap frontier model; excellent for high-volume inference
-LangChain,AI,Trial,FALSE,Mature framework for LLM apps; useful for RAG and agent pipelines
-LlamaIndex,AI,Trial,FALSE,Focused on data ingestion and retrieval; good enterprise integration story
-Cursor,AI,Trial,TRUE,AI-native IDE with strong code completion and refactoring support
-Ollama,AI,Trial,TRUE,Run open-weight LLMs locally with minimal setup; useful for offline/private use
-Claude Tool Use API,AI,Assess,TRUE,Native function-calling for agentic workflows in the Anthropic API
-Mistral 8x22B,AI,Assess,TRUE,Open-weight mixture-of-experts model; competitive performance at lower cost
-LLM Guard,AI,Assess,FALSE,Prompt injection detection and PII scrubbing layer for LLM pipelines
-AutoGen,AI,Hold,FALSE,Microsoft agent framework; high complexity relative to simpler alternatives
-GraphRAG,Data,Adopt,TRUE,Graph-enhanced retrieval for multi-hop questions; strong fit with Neo4j
-Neo4j Vector Index,Data,Adopt,FALSE,Native ANN search in Neo4j; enables combined graph+vector queries
-DuckDB,Data,Adopt,FALSE,Embeddable analytical database; excellent for lightweight local analytics
-Weaviate,Data,Trial,TRUE,Open-source vector DB with rich filter support; evaluating for search use cases
-Databricks Unity Catalog,Data,Assess,FALSE,Data governance and cataloguing; assessing fit for data mesh strategy
-Pinecone,Data,Assess,FALSE,Managed vector DB; good SLAs but adds an external dependency
-Apache Iceberg,Data,Assess,TRUE,Open table format for data lakes; growing ecosystem and tooling
-Terraform,Platform,Adopt,FALSE,De facto IaC standard; mature tooling and provider ecosystem
-Kubernetes,Platform,Adopt,FALSE,Container orchestration default for production microservices
-GitHub Actions,Platform,Adopt,FALSE,First-class CI/CD with native GitHub integration
-Modal,Platform,Trial,TRUE,Serverless GPU compute; very low friction for ML model serving
-Ray,Platform,Trial,FALSE,Distributed Python for ML workloads; evaluating for AI pipeline scaling
-Pulumi,Platform,Assess,FALSE,IaC with real programming languages; potential Terraform replacement
-Dagger,Platform,Hold,FALSE,Portable pipeline-as-code; still too early for production adoption
-TypeScript,Languages,Adopt,FALSE,Default for all frontend and Node.js tooling; strong type safety
-Python 3.12,Languages,Adopt,FALSE,Primary language for data engineering and ML workloads
-Rust,Languages,Trial,FALSE,Memory-safe systems language; adopted for performance-critical CLI tools
-Go,Languages,Assess,FALSE,Evaluating for high-throughput microservices where Python is too slow
+Cursor,Coding Agents,Adopt,FALSE,Primary agentic IDE at Neo4j. Fork of VSCode with agentic access to all major models. Team plan with $200 premium credits/month (renewed on the 15th). Also runs inside JetBrains via a plugin.
+Claude Code,Coding Agents,Adopt,FALSE,Anthropics coding agent run from terminal or inside Cursor/JetBrains/OpenCode. Paid via API key (pay-as-you-go) or Standard seat ($40/month). Enterprise-supported and centrally managed by IT.
+JetBrains Junie,Coding Agents,Trial,FALSE,Integrated coding agent for IntelliJ via AI Pro Org license. Reported to be slow and token-hungry. Cursor or the Claude Code API key are recommended as alternatives.
+JetBrains Air,Coding Agents,Assess,TRUE,New agentic IDE tool from JetBrains currently being evaluated. No formal license tier confirmed yet.
+Copilot,Coding Agents,Hold,FALSE,GitHub Copilot IDE extension. Many engineers have moved to Cursor. Some still have free access via open-source contribution eligibility.
+OpenAI Codex,Coding Agents,Assess,FALSE,Included with the ChatGPT Enterprise license. Limited internal documentation; use case not yet fully defined at Neo4j.
+Google Antigravity,Coding Agents,Assess,TRUE,New AI-native IDE from Google. Some usage covered under Google Workspace license. Described as unstable but progressing fast.
+Claude AI,Coding Agents,Adopt,FALSE,Anthropic standard seat ($40/seat). Provides access to Claude.ai chat interface and Cowork mode. Centrally licensed — the baseline Anthropic plan for all Neo4j engineers.
+Claude AI Premium,Coding Agents,Adopt,FALSE,Anthropic premium seat ($200/seat). Bundles chat, Cowork, IDE integration, Claude Code CLI, and code-agent capabilities. Required for engineers doing heavy agentic development. Request access via your manager.
+Workspace Enterprise Plus,Coding Agents,Assess,FALSE,Google Workspace Enterprise Plus plan. Includes Gemini AI features across Gmail, Docs, Sheets, and Meet. Included in the existing Google Workspace license. Not a primary coding tool but provides ambient AI assistance.
+ChatGPT Enterprise,Coding Agents,Trial,FALSE,OpenAI enterprise plan ($30/seat). Includes chat, code-IDE integration, code-cli, and code-agent capabilities. Formally licensed at Neo4j. Most engineers prefer Cursor and Claude Code; this is available for teams that need OpenAI-specific model access.
+GitHub Copilot,GitHub Agents,Adopt,FALSE,GitHub code review agent enabled for all engineers. Invoked via magic words in pull requests for automated code review.
+Cursor BugBot,GitHub Agents,Trial,TRUE,Free GitHub PR review agent from Cursor. Limited to 3 invocations per month per user.
+Claude Opus 4.6,AI Models,Adopt,FALSE,Heavyweight frontier model (~$5 input / $25 output per million tokens). Reserve for complex architectural reasoning or very difficult bugs only — one request can cost as much as 100 lightweight requests.
+Claude Sonnet 4.6,AI Models,Adopt,FALSE,Mid-tier model (~$3 input / $15 output per million tokens). Recommended for the majority of daily coding tasks including refactoring and general chat.
+Claude Haiku,AI Models,Adopt,FALSE,Lightweight model (~$0.50 input / $2 output per million tokens). Ideal for code completion, simple refactoring, and high-frequency tasks.
+GPT 5.3,AI Models,Trial,FALSE,OpenAI mid-tier model with similar cost profile to Claude Sonnet. Widely supported across third-party integrations.
+Gemini Pro,AI Models,Trial,FALSE,Google mid-tier model at a comparable cost tier to Claude Sonnet. Available via Google Workspace licensing.
+Gemini Flash,AI Models,Trial,FALSE,Google lightweight model at a similar cost tier to Claude Haiku. Fast and cheap for high-volume tasks.
+GPT Codex mini,AI Models,Trial,FALSE,OpenAI lightweight model included with ChatGPT Enterprise license. Suitable for simple code completion tasks.
+Claude Platform,AI Models,Adopt,FALSE,Anthropic API platform (usage-based). The underlying API used by Claude Code and internal integrations to call Claude models. Consumed pay-as-you-go; tracked centrally under the Neo4j enterprise agreement.
+AI Studio,AI Models,Trial,FALSE,Google AI Studio — a web-based prototyping environment and API gateway for Gemini models. Included with Google Workspace Enterprise Plus. Useful for experimenting with Gemini before committing to the API.
+Platform API (OpenAI),AI Models,Trial,FALSE,OpenAI API platform (usage-based). Provides programmatic access to GPT and Codex models. Available under the ChatGPT Enterprise agreement. Use when an integration specifically requires OpenAI models.
+Rule Files,Practices & Security,Adopt,FALSE,Persistent context files applied automatically by coding agents (.cursor/rules/ for Cursor; CLAUDE.md for Claude Code; .github/copilot-instructions.md for Copilot). Most tools can generate a starter set from your project.
+Secure Rules (Wiz),Practices & Security,Adopt,FALSE,Security rule files from the Wiz secure-rules-files repository. Must be placed in repo root so the AI agent always applies language- and tool-specific security constraints.
+AI Code Review Policy,Practices & Security,Adopt,FALSE,All AI-generated code must be reviewed by two humans before merging. The managing engineer plus one peer. No Co-Authored-By attribution required in commits.
+hone-ai,Practices & Security,Assess,TRUE,AI Coding Agent Orchestrator with continuous learning. Orchestration layer on top of Claude Code and OpenCode. Recommended plugin for enforcing best practices at scale.
+oskars.ai Autoresearch,Practices & Security,Assess,TRUE,Plugin for optimising any part of your workflow. Available at oskars.ai/plugins/autoresearch.
 `;
 
 function loadSample() {
   clearError();
   const { blips, quadrants } = processRows(Papa.parse(SAMPLE_CSV, { header: true, skipEmptyLines: true }).data);
   _blips = blips; _quadrants = quadrants;
+  quadrants.forEach(q => { if (_quadrantDisplayNames[q] === undefined) _quadrantDisplayNames[q] = ''; });
   renderRadar(blips, quadrants); renderLegend(blips, quadrants);
+  renderQuadrantInputs(quadrants);
   document.getElementById('drop-zone').classList.remove('has-file');
   document.getElementById('drop-label').textContent = 'Drop a CSV file here, or click to browse';
   document.getElementById('csv-file-input').value = '';
